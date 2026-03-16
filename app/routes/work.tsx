@@ -31,7 +31,7 @@ const CASE_STUDIES = [
     slug: "eeat-ymyl-compliance",
     title: "How E-E-A-T Compliance Transformed YMYL Rankings",
     subtitle: "Building trust signals that Google rewards in the crypto space",
-    gradient: "from-emerald-500 to-teal",
+    gradient: "from-rose-500 to-red-400",
     icon: "🛡️",
     metrics: [
       { value: "73%", label: "Ranking improvement" },
@@ -81,17 +81,19 @@ export default function Work() {
             to={`/work/${study.slug}`}
             className="card-lift group relative overflow-hidden rounded-2xl border border-dark-border bg-dark-surface"
           >
-            {/* Gradient header */}
-            <div className={`relative h-40 bg-gradient-to-br ${study.gradient}  p-6`}>
-              <span className="text-4xl">{study.icon}</span>
-              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-surface" />
+            {/* Gradient header with title */}
+            <div className={`relative flex items-end bg-gradient-to-br ${study.gradient} p-6 pb-8`} style={{ minHeight: "160px" }}>
+              <div>
+                <span className="text-3xl">{study.icon}</span>
+                <h2 className="mt-2 font-heading text-xl font-bold leading-snug text-white drop-shadow-sm">
+                  {study.title}
+                </h2>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-dark-surface" />
             </div>
             {/* Content */}
-            <div className="p-6 pt-2">
-              <h2 className="font-heading text-xl font-bold leading-snug transition-colors group-hover:text-teal-light">
-                {study.title}
-              </h2>
-              <p className="mt-2 text-[0.935rem] text-dark-text-muted">
+            <div className="p-6 pt-4">
+              <p className="text-[0.935rem] text-dark-text-muted">
                 {study.subtitle}
               </p>
               {/* Metrics bar */}
