@@ -6,7 +6,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-dark-border bg-dark-surface-alt">
-      <div className="container-editorial py-16">
+      <div className="container-editorial py-10">
         <div className="grid gap-12 md:grid-cols-3">
           {/* Brand column */}
           <div>
@@ -65,11 +65,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-dark-border pt-8 text-xs text-dark-text-muted sm:flex-row">
+        <div className="mt-8 border-t border-dark-border pt-6 text-center text-xs text-dark-text-muted">
           <p>&copy; {year} {SITE.name}. All rights reserved.</p>
-          <p>
-            Built with React Router 7 &amp; Cloudflare Workers
-          </p>
         </div>
       </div>
     </footer>
