@@ -1,6 +1,6 @@
 # hristinayordanova.com
 
-Personal portfolio website built with **React Router 7** and deployed on **Cloudflare Workers**.
+Personal portfolio website built with **React Router 7** and deployed on **Cloudflare Workers**..
 
 ## Tech Stack
 
