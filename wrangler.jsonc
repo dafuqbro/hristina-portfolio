@@ -1,0 +1,27 @@
+{
+  "name": "hristina-portfolio",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./workers/app.ts",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./build/client"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hristina-blog",
+      "database_id": "18edc65e-9d15-471b-b95d-63751541d22e"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "IMAGES",
+      "bucket_name": "hristina-images"
+    }
+  ],
+  "routes": [
+    { "pattern": "hristinayordanova.com", "custom_domain": true },
+    { "pattern": "www.hristinayordanova.com", "custom_domain": true }
+  ]
+}
