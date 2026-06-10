@@ -82,10 +82,10 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14">
             {[
-              { name: "Cointelegraph", url: "https://cointelegraph.com", logo: "/logos/cointelegraph.svg" },
-              { name: "CoinMarketCap", url: "https://coinmarketcap.com", logo: "/logos/coinmarketcap.svg" },
-              { name: "DappRadar", url: "https://dappradar.com", logo: "/logos/dappradar.svg" },
-              { name: "Cryptonews", url: "https://cryptonews.com", logo: "/logos/cryptonews.svg" },
+              { name: "Cointelegraph", url: "https://cointelegraph.com", logo: "/logos/cointelegraph.png" },
+              { name: "CoinMarketCap", url: "https://coinmarketcap.com", logo: "/logos/coinmarketcap.png" },
+              { name: "DappRadar", url: "https://dappradar.com", logo: "/logos/dappradar.png" },
+              { name: "Cryptonews", url: "https://cryptonews.com", logo: "/logos/cryptonews.png" },
             ].map((pub) => (
               <a
                 key={pub.name}
