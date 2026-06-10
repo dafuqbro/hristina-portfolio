@@ -1,8 +1,8 @@
 export const SITE = {
   name: "Hristina Yordanova",
-  title: "Hristina Yordanova | Crypto Expert, Editor & Writer",
+  title: "Hristina Yordanova | Crypto Editor & Content Strategist",
   description:
-    "Senior crypto editor and content strategist with 7+ years of editorial leadership at Cointelegraph, CoinMarketCap, DappRadar, and Cryptonews. Expertise in AI-assisted workflows, on-chain data analysis, and SEO-driven content strategy.",
+    "Senior crypto editor and content strategist with 7+ years at Cointelegraph, CoinMarketCap, DappRadar, and Cryptonews. I connect editorial depth with social-first, multi-format content — from breaking posts to long-form that ranks — using AI-assisted workflows and on-chain data.",
   url: "https://hristinayordanova.com",
   image: "https://hristinayordanova.com/headshot.jpg",
   locale: "en_US",
@@ -19,10 +19,11 @@ export const PUBLICATIONS = [
 
 export const SKILLS = [
   "Editorial Leadership",
+  "Social-First Content",
   "AI-Assisted Workflows",
   "On-Chain Data Analysis",
-  "SEO Content Strategy",
-  "Team Management",
+  "SEO & Audience Growth",
+  "Short-Form Video",
   "Crypto Journalism",
 ] as const;
 
@@ -46,6 +47,9 @@ const PERSON_ENTITY = {
     "DeFi",
     "On-Chain Data Analysis",
     "SEO Content Strategy",
+    "Social Media Strategy",
+    "Short-Form Video",
+    "Content Distribution",
     "AI-Assisted Editorial Workflows",
     "NFTs",
     "Web3",
