@@ -80,7 +80,7 @@ export default function Home() {
           <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-dark-text-muted">
             Published &amp; edited at
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14">
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-16">
             {[
               { name: "Cointelegraph", url: "https://cointelegraph.com", logo: "/logos/cointelegraph.png" },
               { name: "CoinMarketCap", url: "https://coinmarketcap.com", logo: "/logos/coinmarketcap.png" },
@@ -92,13 +92,13 @@ export default function Home() {
                 href={pub.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-dark-text-muted opacity-60 transition-all hover:opacity-100"
+                className="group inline-flex items-center"
                 aria-label={pub.name}
               >
                 <img
                   src={pub.logo}
                   alt={pub.name}
-                  className="h-7 w-auto md:h-8"
+                  className="h-6 w-auto max-w-[150px] object-contain opacity-60 transition-opacity duration-200 group-hover:opacity-100 md:h-7 [filter:brightness(0)_invert(1)]"
                   loading="lazy"
                 />
               </a>
@@ -158,7 +158,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <h2>Let&apos;s work together</h2>
           <p className="mt-4 text-lg text-dark-text-muted">
-            Looking for a content strategist who moves between long-form depth and social-first storytelling — with the technical fluency crypto demands.
+            Looking for a content strategist who moves between long-form depth and social-first storytelling — with the technical fluency crypto demands?
           </p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-lg bg-teal px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-teal-dark">
             Get in Touch
