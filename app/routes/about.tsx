@@ -83,9 +83,7 @@ export default function About() {
               <p>
                 Before moving into crypto media full-time, I earned an MA in Journalism from Edinburgh Napier University. I&apos;m fluent in English and Bulgarian and have managed editorial teams distributed across multiple time zones.
               </p>
-              <p>
-                Beyond my editorial career, I run several crypto web projects including CryptoStories.xyz and BlokChainFeed, where I experiment with AI-powered content tools, WordPress automation, and creative editorial formats.
-              </p>
+          
             </div>
           </div>
         </div>
