@@ -15,6 +15,7 @@ export default [
     route("blog", "./routes/blog.tsx"),
     route("blog/:slug", "./routes/blog-post.tsx"),
     route("work", "./routes/work.tsx"),
+    route("work/dasdhjsfdhnasbj", "./routes/work-flywheel-private.tsx"),
     route("work/:slug", "./routes/work-post.tsx"),
     route("clips", "./routes/clips.tsx"),
     route("contact", "./routes/contact.tsx"),
