@@ -4,9 +4,9 @@ import { pageMeta, getPersonSchema, getWebSiteSchema, getBreadcrumbSchema, SITE,
 export function meta() {
   return [
     ...pageMeta({
-      title: "Hristina Yordanova | Crypto Expert, Editor & Writer",
+      title: "Hristina Yordanova | Crypto Editor & Content Strategist",
       description:
-        "Senior crypto editor and content strategist with 7+ years at Cointelegraph, CoinMarketCap, DappRadar & Cryptonews. AI-powered editorial workflows, on-chain analysis, and SEO-driven content strategy.",
+        "Senior crypto editor and content strategist with 7+ years at Cointelegraph, CoinMarketCap, DappRadar & Cryptonews. I work across the full content loop — social-first posts, long-form that ranks, and short-form video — powered by AI-assisted workflows and on-chain analysis.",
     }),
     { "script:ld+json": getPersonSchema() },
     { "script:ld+json": getWebSiteSchema() },
@@ -30,7 +30,7 @@ export default function Home() {
           <div className="grid items-center gap-12 md:grid-cols-2">
             <div className="opacity-0 animate-fade-up">
               <p className="font-body text-sm font-semibold uppercase tracking-widest text-teal-light">
-                Crypto Expert &amp; Senior Editor
+                Crypto Editor &amp; Content Strategist
               </p>
               <h1 className="mt-4">
                 Shaping crypto media
@@ -39,9 +39,10 @@ export default function Home() {
               </h1>
               <p className="mt-6 max-w-lg text-lg leading-relaxed text-dark-text-muted">
                 7+ years of editorial leadership at the world&apos;s top crypto
-                publications. I combine AI-assisted workflows, on-chain data
-                analysis, and SEO expertise to produce content that informs,
-                engages, and ranks.
+                publications. I work across the full content loop — reactive,
+                social-first posts that capture the moment, long-form that ranks,
+                and short-form video — powered by AI-assisted workflows and
+                on-chain data.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link to="/work" className="inline-flex items-center gap-2 rounded-lg bg-teal px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-teal-dark">
@@ -110,25 +111,26 @@ export default function Home() {
       <section className="container-editorial py-20 md:py-28">
         <div className="mx-auto max-w-2xl text-center">
           <h2>
-            A crypto editor who
+            A crypto content strategist who
             <br />
             <span className="gradient-text">understands the tech</span>
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-dark-text-muted">
             I don&apos;t just write about crypto — I analyze on-chain data, build
-            AI-powered editorial workflows, and lead distributed teams producing
-            hundreds of articles per month.
+            AI-powered editorial workflows, and lead distributed teams. And I
+            turn market moments into content that travels: from a fast,
+            social-first post to the long-form analysis it grows into.
           </p>
         </div>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
             { icon: "✍️", title: "Editorial Leadership", desc: "Managing Editor at Cryptonews overseeing a distributed team of 15+ writers and editors across news, analysis, and educational content." },
+            { icon: "💬", title: "Social-First Content", desc: "Translating complex crypto into platform-native posts, threads, and short-form video — built for how X, TikTok, and LinkedIn actually behave." },
             { icon: "🤖", title: "AI-Assisted Workflows", desc: "Building n8n automations and prompt engineering pipelines that scaled editorial output 2.5× without additional headcount." },
             { icon: "📊", title: "On-Chain Data Analysis", desc: "Leveraging Dune Analytics, Nansen, and CoinGecko APIs to create data-driven content and custom research dashboards." },
-            { icon: "🔍", title: "SEO Content Strategy", desc: "Google Discover optimization, E-E-A-T compliance for YMYL crypto content, and keyword-driven calendars that drive organic growth." },
+            { icon: "📈", title: "SEO & Audience Growth", desc: "Google Discover optimization and E-E-A-T compliance for YMYL crypto, plus the reactive cadence that turns search and social into a compounding audience." },
             { icon: "🌐", title: "Web3 Native", desc: "Deep hands-on understanding of DeFi protocols, NFTs, DAOs, Layer 2s, and blockchain architecture — not just covering the space, living in it." },
-            { icon: "📈", title: "Content That Ranks", desc: "Proven track record of SEO-optimized articles reaching Google Discover and ranking for highly competitive crypto keywords." },
           ].map((item) => (
             <div key={item.title} className="card-lift rounded-xl border border-dark-border bg-dark-surface p-6">
               <span className="text-2xl">{item.icon}</span>
@@ -156,7 +158,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <h2>Let&apos;s work together</h2>
           <p className="mt-4 text-lg text-dark-text-muted">
-            Looking for a crypto editor, content strategist, or writer who combines editorial expertise with technical depth?
+            Looking for a content strategist who moves between long-form depth and social-first storytelling — with the technical fluency crypto demands?
           </p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-lg bg-teal px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-teal-dark">
             Get in Touch
