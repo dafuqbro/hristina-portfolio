@@ -21,7 +21,7 @@ const TIMELINE = [
     period: "2023 – Present",
     role: "Managing Editor",
     company: "Cryptonews",
-    desc: "Leading a distributed editorial team of 15+ writers and editors. Implemented AI-assisted editorial workflows using n8n automation and prompt engineering, achieving a 2.5× increase in content output. Driving Google Discover performance, managing daily content operations across breaking news, market analysis, educational guides, and branded content.",
+    desc: "Leading a distributed editorial team of 15+ writers and editors. Implemented AI-assisted editorial workflows using n8n automation and prompt engineering, achieving a 2.5× increase in content output. Driving Google Discover performance and managing daily operations across breaking news, market analysis, educational guides, branded content — and the social channels that distribute them.",
   },
   {
     period: "2021 – 2023",
@@ -78,6 +78,9 @@ export default function About() {
                 My work sits at the intersection of editorial excellence and technical innovation. I build AI-assisted workflows using n8n and prompt engineering that multiply team output without sacrificing quality. I use on-chain data from Dune Analytics and Nansen to inform content decisions, and I create SEO strategies that consistently reach Google Discover and rank for competitive crypto keywords.
               </p>
               <p>
+                Increasingly, that means owning the full content loop: shipping reactive, social-first posts that capture a market moment, then growing them into the long-form analysis — and the short-form video — that carries the story across platforms. Speed feeds depth, depth feeds reach.
+              </p>
+              <p>
                 Before moving into crypto media full-time, I earned an MA in Journalism from Edinburgh Napier University. I&apos;m fluent in English and Bulgarian and have managed editorial teams distributed across multiple time zones.
               </p>
               <p>
@@ -118,7 +121,7 @@ export default function About() {
             ["Editorial Leadership", "Managing distributed teams of 15+ across news, analysis, branded content, and educational material at scale"],
             ["AI-Assisted Workflows", "n8n automation pipelines, prompt engineering for editorial QA, LLM-powered content tools and research assistants"],
             ["On-Chain Data Analysis", "Dune Analytics, Nansen, CoinGecko Pro API — building dashboards and using on-chain data to inform editorial decisions"],
-            ["SEO Content Strategy", "Google Discover optimization, E-E-A-T for YMYL crypto content, keyword clustering, and data-driven editorial calendars"],
+            ["Social & SEO Distribution", "Platform-native content for X, TikTok, and LinkedIn; Google Discover optimization; E-E-A-T for YMYL crypto; and the reactive cadence that compounds reach"],
             ["Crypto & Blockchain", "DeFi, NFTs, DAOs, tokenomics, Layer 2 scaling, market analysis, regulation tracking, and Web3 ecosystem coverage"],
             ["Multilingual", "Fluent in English and Bulgarian. MA in Journalism from Edinburgh Napier University. International editorial experience"],
           ].map(([title, desc]) => (
