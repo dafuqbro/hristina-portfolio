@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import type { Route } from "./+types/work-post";
 import { pageMeta, getBreadcrumbSchema, SITE } from "~/lib/seo";
 import { AIWorkflowsCaseStudy } from "~/components/case-studies/ai-workflows";
+import { ContentFlywheelCaseStudy } from "~/components/case-studies/content-flywheel";
 import { SEODiscoverCaseStudy } from "~/components/case-studies/seo-discover";
 import { EEATCaseStudy } from "~/components/case-studies/eeat-compliance";
 import { ContentStrategyCaseStudy } from "~/components/case-studies/content-strategy";
@@ -11,6 +12,11 @@ const STUDIES: Record<string, { title: string; description: string; Component: R
     title: "Scaling Editorial Output 2.5× with AI Workflows",
     description: "How automation and prompt engineering transformed a crypto newsroom — an interactive walkthrough of the systems, tools, and results.",
     Component: AIWorkflowsCaseStudy,
+  },
+  "content-flywheel": {
+    title: "The Content Flywheel: Reactive Social to Long-Form Authority",
+    description: "How breaking, social-first posts become long-form that ranks — and get re-cut into the threads and video that feed the next moment. An interactive walkthrough of the loop.",
+    Component: ContentFlywheelCaseStudy,
   },
   "seo-to-google-discover": {
     title: "From Zero to Google Discover in 90 Days",
