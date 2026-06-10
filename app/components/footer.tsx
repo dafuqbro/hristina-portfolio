@@ -14,9 +14,9 @@ export function Footer() {
               Hristina Yordanova
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-dark-text-muted">
-              Senior crypto editor &amp; content strategist. Shaping crypto
-              media with AI-powered editorial workflows and on-chain data
-              insights.
+              Senior crypto editor &amp; content strategist. Connecting editorial
+              depth with social-first, multi-format storytelling — powered by AI
+              workflows and on-chain data.
             </p>
           </div>
 
