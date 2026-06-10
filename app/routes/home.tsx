@@ -158,7 +158,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <h2>Let&apos;s work together</h2>
           <p className="mt-4 text-lg text-dark-text-muted">
-            Looking for a content strategist who moves between long-form depth and social-first storytelling — with the technical fluency crypto demands?
+            Looking for a content strategist who moves between long-form depth and social-first storytelling — with the technical fluency crypto demands.
           </p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-lg bg-teal px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-teal-dark">
             Get in Touch
