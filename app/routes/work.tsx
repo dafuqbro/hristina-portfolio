@@ -15,6 +15,19 @@ const CASE_STUDIES = [
     tags: ["n8n Automation", "Prompt Engineering", "Editorial QA"],
   },
   {
+    slug: "content-flywheel",
+    title: "The Content Flywheel: Reactive Social to Long-Form Authority",
+    subtitle: "How breaking, social-first posts become long-form that ranks — and back again",
+    gradient: "from-cyan-500 to-teal-400",
+    icon: "🔁",
+    metrics: [
+      { value: "Minutes", label: "Signal to post" },
+      { value: "1 → 6", label: "Story to assets" },
+      { value: "2-way", label: "Social ⇄ long-form" },
+    ],
+    tags: ["Reactive Content", "Short-Form Video", "Distribution"],
+  },
+  {
     slug: "seo-to-google-discover",
     title: "From Zero to Google Discover in 90 Days",
     subtitle: "A systematic SEO strategy for crypto publications",
