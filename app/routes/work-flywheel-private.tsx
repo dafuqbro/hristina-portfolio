@@ -3,7 +3,7 @@ import { pageMeta } from "~/lib/seo";
 
 /* ────────────────────────────────────────────────────────────────────────
    UNLISTED CASE STUDY  ·  /work/dasdhjsfdhnasbj
-   - noindex (see meta below), not in nav, not in /work grid, not in sitemap.
+   - noindex (see meta below), not in nav, not in /work grid, not in sitemap..
    - Anyone with the link can view; treat the URL like a password.
 
    ✏️  EDIT HERE: everything specific lives in the DATA object below.
