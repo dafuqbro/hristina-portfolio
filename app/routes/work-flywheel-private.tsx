@@ -1,16 +1,8 @@
 import { Fragment, useEffect } from "react";
 import { pageMeta } from "~/lib/seo";
 
-/* ────────────────────────────────────────────────────────────────────────
-   UNLISTED CASE STUDY  ·  /work/dasdhjsfdhnasbj
-   - noindex (see meta below), not in nav, not in /work grid, not in sitemap.
-   - Anyone with the link can view; treat the URL like a password.
-
-   ✏️  EDIT HERE: everything specific lives in the DATA object below.
-   Items marked  // REAL  are verified from the published articles.
-   Items marked  // RECONSTRUCTED  are realistic placeholders — replace the
-   text / times / numbers with the actual tweets and live-blog entries.
-   ──────────────────────────────────────────────────────────────────────── */
+/* Unlisted case study · /work/dasdhjsfdhnasbj
+   noindex, not in nav / work grid / sitemap. Anyone with the link can view — treat the URL like a password. */
 
 const DATA = {
   preparedFor: "Private preview", // e.g. "Prepared for the Revolut hiring team"
@@ -18,7 +10,7 @@ const DATA = {
   // ===== DIRECTION 2 — REACTIVE SOCIAL → LONG-FORM (the live blog) =====
   reactive: {
     article: {
-      // REAL
+
       kicker: "Cryptonews · Report · On-chain data",
       title: "Germany Missed Out on $3.17B From Selling BTC Before the Rally",
       url: "cryptonews.com/reports/germany-missed-out-on-3-17b-from-selling-btc-before-the-rally",
@@ -33,7 +25,7 @@ const DATA = {
       label: "Where it started",
       text: "A morning editorial call. Someone floated the \u201Cwhat if\u201D \u2014 imagine if Germany had simply held. With Bitcoin tagging new highs that day, the desk turned an offhand remark into a data assignment: calculate the miss, source every figure, ship it.",
     },
-    // REAL tweet \u2014 @cryptonews, 12 Aug 2025
+   
     tweet: {
       handle: "@cryptonews \u00B7 12 Aug 2025",
       body: "😕 Germany sold nearly 50,000 BTC in 2024 for $2.89B. Today, it would be worth around $6B \u2014 a $3B miss!\n\nWe dug into the data to see what happened and why.\n#Bitcoin #Germany",
@@ -42,70 +34,29 @@ const DATA = {
     takeaway: "One sentence in a morning call \u2192 a sourced, on-chain data report \u2192 a post that travels. The desk doesn\u2019t just react to the timeline; it feeds it.",
   },
 
-  // ===== DIRECTION 1 — LONG-FORM → SOCIAL (the crashes report) =====
+  // ===== CASE STUDY 2 — LONG-FORM → SOCIAL (the daily brief) =====
   amplify: {
     article: {
-      // REAL
-      kicker: "Cryptonews · Market Research / Report",
-      title: "Bitcoin, Gold or Stocks: Which Holds Up Best in Market Crashes?",
-      trigger: "Published into a live moment: crypto had just dropped ~10% in a day on fresh US tariff threats. The report answered the question everyone was already asking.",
-      findings: [
-        "Gold was steadiest in the panic — best safe haven in 3 of the 4 crises.",
-        "Bitcoin fell hardest but paid the most later: +220% in the 6 months after the COVID crash.",
-        "2022 rate shock: BTC −53.4% (Terra, Voyager, FTX); Gold ended +4.7% above its start.",
-        "2023 bank run: Gold worked instantly; BTC moved on its own clock, +49% the next month.",
+      kicker: "Cryptonews · Daily brief on X",
+      title: "The morning crypto brief",
+      intro:
+        "Some days the desk's output isn't one deep piece — it's a dozen stories. The daily brief curates them into a single thread on @cryptonews: one tight, sourced summary per story, each linking back to the full article.",
+      covered: [
+        "Trump pledges a US \u201CStrategic Bitcoin Reserve\u201D",
+        "The Fed holds rates \u2014 its eighth straight pause",
+        "California puts vehicle titles on Avalanche",
+        "Mt. Gox moves another $2.5B in Bitcoin",
+        "Solana surges 23.5% in July on ETF speculation",
+        "Tether reports a record $5.2B H1 profit",
+        "Web3 projects ride the Paris Olympics",
+        "Senator Lummis revives her Bitcoin-reserve plan",
       ],
-      disclaimer: "Carries the standard line: informational only, not investment advice.", // REAL
     },
-    // Each post uses REAL data from the report → accurate, not invented.
-    // ✏️ Adjust copy/timing to match what actually shipped; add metrics.
-    rollout: [
-      {
-        day: "Day 1 — launch",
-        format: "X thread (5 tweets)",
-        accent: "teal",
-        purpose: "Carry the full argument; link the report in the last tweet.",
-        body: "1/ Gold or Bitcoin in a crash? We ran the numbers on 4 meltdowns since 2020 — COVID, the 2022 rate shock, the 2023 bank run, and April's tariff shock. The pattern surprises both camps. 🧵\n\n2/ COVID, Mar 2020: the S&P fell 9.5% in a single session, VIX above 75. Gold barely flinched. Bitcoin crashed hardest — then ran +220% by September.\n\n3/ 2022 rate shock: BTC −53%, dragged down by Terra, Voyager and FTX. Gold ended +4.7% above where it started.\n\n4/ 2023 bank run (SVB): Gold did its job immediately. Bitcoin moved on its own clock — +49% the following month.\n\n5/ Verdict: Gold protects, Bitcoin pays — later. Full breakdown, all four crises 👇 [link]",
-      },
-      {
-        day: "Day 2",
-        format: "Stat card (X + Instagram)",
-        accent: "teal",
-        purpose: "One number, one image, infinitely shareable.",
-        body: "“+220% — Bitcoin's run in the 6 months after the COVID crash. Gold's job is to not lose. Bitcoin's is to win late.”  → branded graphic, no caption needed.",
-      },
-      {
-        day: "Day 3",
-        format: "Poll (X)",
-        accent: "teal",
-        purpose: "Bait the debate; harvest the replies for a follow-up.",
-        body: "“Market panic hits tomorrow. Where do you want your money?”  →  Gold / Bitcoin / S&P 500 / Cash",
-      },
-      {
-        day: "Day 4",
-        format: "Short video, 60s (TikTok / Reels / Shorts)",
-        accent: "teal",
-        purpose: "Highest-ROI format; three charts to a verdict.",
-        body: "“Which actually survives a crash?” Voiceover over three charts (COVID, 2022, 2023), hard cut to the verdict. Vertical, captioned, watermark to the report.",
-      },
-      {
-        day: "Day 5",
-        format: "LinkedIn angle",
-        accent: "teal",
-        purpose: "Sober, professional framing for a different audience.",
-        body: "“We compared gold, Bitcoin and the S&P across four crises since 2020. The takeaway for allocators isn't ‘which is better' — it's that they do different jobs, on different timelines.”  → carousel of the four crises.",
-      },
-    ],
-    results: "— thread impressions · — report sessions from social · — video views · — saves/shares  (✏️ add real figures)",
+    takeaway:
+      "A dozen separate stories \u2192 one scannable thread \u2192 eight links back into the site. The other direction of the flywheel: not amplifying one piece, but curating many into a single social-native format readers actually finish.",
   },
 };
 
-/* ────────────────────────────────────────────────────────────────────────
-   FLOW DIAGRAMS  ·  the hover/tap stages + shared panel
-   ✏️ Per stage: set `shot` to an image path once you upload screenshots
-      (e.g. "/work-assets/cs1-tweet.png" in /public/work-assets/), and refine
-      `explanation` from your direction. `caption` is the short line on the card.
-   ──────────────────────────────────────────────────────────────────────── */
 const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
   cs1: {
     eyebrow: "Hover or tap each stage",
@@ -143,7 +94,6 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
         icon: "𝕏",
         label: "The tweet",
         caption: "Distributed on @cryptonews",
-        // shot: "/work-assets/cs1-germany-tweet.png",
         explanation:
           "The report shipped to the timeline with one sharp stat \u2014 \u201Ca $3B miss\u201D \u2014 and a link. The morning-call aside had become a story thousands of people read.",
       },
@@ -154,49 +104,45 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
     accent: "teal",
     stages: [
       {
-        key: "cs2-tweet",
-        icon: "𝕏",
-        label: "Launch thread",
-        caption: "Report lands as a thread",
-        nextLabel: "expands the depth in",
-        explanation:
-          "The report went out as a thread built to carry the whole argument — one tweet per crisis, the standout stat up front, the link to the full piece in the last post.",
+        key: "cs2-coverage",
+        icon: "🗞️",
+        label: "The day's coverage",
+        caption: "A dozen stories break",
+        nextLabel: "curated into",
+        explanation: "",
       },
       {
-        key: "cs2-long",
+        key: "cs2-curate",
+        icon: "✂️",
+        label: "Editorial curation",
+        caption: "What's worth surfacing",
+        nextLabel: "packaged as",
+        explanation: "",
+      },
+      {
+        key: "cs2-thread",
+        icon: "🧵",
+        label: "The brief thread",
+        caption: "One scannable thread",
+        nextLabel: "drives clicks to",
+        explanation: "",
+      },
+      {
+        key: "cs2-articles",
         icon: "📄",
-        label: "Long-form report",
-        caption: "The evergreen anchor",
-        nextLabel: "re-cut vertical for",
-        explanation:
-          "The anchor: a data-rich report comparing gold, Bitcoin and the S&P across four crises. Evergreen, sourced and built to rank — the kind of piece you can amplify for weeks, not hours.",
-      },
-      {
-        key: "cs2-tiktok",
-        icon: "🎬",
-        label: "TikTok",
-        caption: "60-second verdict",
-        explanation:
-          "The findings became a 60-second vertical — three charts to a verdict — captioned for silent viewing and watermarked back to the report.",
+        label: "The full articles",
+        caption: "Each tweet links out",
+        explanation: "",
       },
     ],
-    branch: {
-      key: "cs2-more",
-      icon: "🧵",
-      label: "More tweets",
-      caption: "Loops back out as fresh social",
-      fromLabel: "loops back out as",
-      explanation:
-        "The replies and questions the thread and video pulled in became the next round of posts — a poll, a stat card, a follow-up angle — feeding the cycle back to the top.",
-    },
   },
 };
 
-// ✏️ Standalone tweet examples. Add `shot: "/work-assets/tweet-1.png"` per item.
 // Real @cryptonews tweet embeds (X widgets.js renders these on the client).
 // data-theme="dark" keeps them on-brand against the dark page.
 const TWEET_EMBEDS = {
   germany: `<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">😕 Germany sold nearly 50,000 BTC in 2024 for $2.89B. Today, it would be worth around $6B — a $3B miss!<br>We dug into the data to see what happened and why.<a href="https://x.com/hashtag/Bitcoin?src=hash&amp;ref_src=twsrc%5Etfw">#Bitcoin</a> <a href="https://x.com/hashtag/Germany?src=hash&amp;ref_src=twsrc%5Etfw">#Germany</a><a href="https://t.co/WE3DwNUqcu">https://t.co/WE3DwNUqcu</a></p>&mdash; Cryptonews.com (@cryptonews) <a href="https://x.com/cryptonews/status/1955243153654759800?ref_src=twsrc%5Etfw">August 12, 2025</a></blockquote>`,
+  dailyBrief: `<blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/cryptonews/status/1820482495881593222"></a></blockquote>`,
   others: [
     {
       key: "quantum",
@@ -355,8 +301,9 @@ export default function FlywheelCaseStudy() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-dark-text-muted">
             At a crypto desk, social isn&apos;t where a story ends — it&apos;s where half of them start. Two worked
-            examples from the <strong className="text-dark-text">@cryptonews</strong> account, using real published pieces:
-            one report amplified into a week of posts, and one breaking moment captured into a live blog that ranks.
+            examples from the <strong className="text-dark-text">@cryptonews</strong> account, both real: one where a
+            newsroom spark became a sourced data report, and one where a day of coverage was curated into a single
+            scannable thread.
           </p>
           <p className="mt-4 text-sm text-dark-text-muted">
             Hristina Yordanova · Managing Editor, Cryptonews · <a className="text-teal-light hover:underline" href="https://hristinayordanova.com">hristinayordanova.com</a>
@@ -412,47 +359,37 @@ export default function FlywheelCaseStudy() {
       <section className="border-b border-dark-border">
         <div className="container-editorial py-14 md:py-20">
           <Pill tone="teal">Case study 2 · Long-form → social</Pill>
-          <h2 className="mt-4">Long-form → social</h2>
+          <h2 className="mt-4">The daily brief</h2>
           <p className="mt-3 max-w-2xl text-dark-text-muted">
-            One data-rich report becomes a week of platform-native posts — each native to its feed, each linking back,
-            each compounding reach and SEO.
+            {A.article.intro}
           </p>
 
           <Flow flow={FLOWS.cs2} />
 
-          {/* Report anchor */}
-          <div className="mt-8 rounded-2xl border border-teal/30 bg-dark-surface p-6">
-            <p className="text-xs font-semibold uppercase tracking-widest text-teal-light">{A.article.kicker}</p>
-            <h3 className="mt-2 font-heading text-2xl font-bold leading-snug">{A.article.title}</h3>
-            <p className="mt-3 text-dark-text-muted"><span className="font-semibold text-dark-text">Why it landed: </span>{A.article.trigger}</p>
-            <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-              {A.article.findings.map((f, i) => (
-                <li key={i} className="flex gap-2 text-[0.95rem] leading-relaxed text-dark-text-muted">
-                  <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-teal-light" />{f}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-xs italic text-dark-text-muted">{A.article.disclaimer}</p>
+          {/* Brief anchor + thread embed */}
+          <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
+            <div className="rounded-2xl border border-teal/30 bg-dark-surface p-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-teal-light">{A.article.kicker}</p>
+              <h3 className="mt-2 font-heading text-2xl font-bold leading-snug">{A.article.title}</h3>
+              <p className="mt-4 text-sm font-semibold text-dark-text">What this one thread covered</p>
+              <ul className="mt-3 space-y-2">
+                {A.article.covered.map((c, i) => (
+                  <li key={i} className="flex gap-2 text-[0.95rem] leading-relaxed text-dark-text-muted">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-teal-light" />{c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <TweetEmbed html={TWEET_EMBEDS.dailyBrief} />
+            </div>
           </div>
 
-          {/* Weekly rollout */}
-          <h3 className="mt-12 font-heading text-xl font-semibold">The rollout — one report, five assets</h3>
-          <div className="mt-6 space-y-4">
-            {A.rollout.map((post, i) => (
-              <div key={i} className="grid gap-4 rounded-2xl border border-dark-border bg-dark-surface p-5 md:grid-cols-[200px,1fr]">
-                <div>
-                  <p className="font-heading text-sm font-bold text-teal-light">{post.day}</p>
-                  <p className="mt-1 text-sm font-medium text-dark-text">{post.format}</p>
-                  <p className="mt-2 text-xs leading-relaxed text-dark-text-muted">{post.purpose}</p>
-                </div>
-                <p className="whitespace-pre-line border-t border-dark-border pt-4 text-[0.95rem] leading-relaxed text-dark-text md:border-l md:border-t-0 md:pl-5 md:pt-0">{post.body}</p>
-              </div>
-            ))}
-          </div>
-
+          {/* Takeaway */}
           <div className="mt-8 rounded-2xl bg-dark-surface-alt p-6">
-            <p className="text-xs font-semibold uppercase tracking-widest text-dark-text-muted">Results</p>
-            <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{A.results}</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-teal-light">↺ What it shows</p>
+            <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{A.takeaway}</p>
           </div>
         </div>
       </section>
