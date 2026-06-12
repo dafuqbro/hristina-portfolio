@@ -7,13 +7,13 @@ import { pageMeta } from "~/lib/seo";
 const DATA = {
   preparedFor: "Private preview", // e.g. "Prepared for the Revolut hiring team"
 
-  // ===== DIRECTION 2 — REACTIVE SOCIAL → LONG-FORM (the live blog) =====
+  // ===== CASE STUDY 1 — REACTIVE → LONG-FORM (the Germany report) =====
   reactive: {
     article: {
 
       kicker: "Cryptonews · Report · On-chain data",
       title: "Germany Missed Out on $3.17B From Selling BTC Before the Rally",
-      url: "cryptonews.com/reports/germany-missed-out-on-3-17b-from-selling-btc-before-the-rally",
+      url: "https://cryptonews.com/reports/germany-missed-out-on-3-17b-from-selling-btc-before-the-rally/",
       facts: [
         "Seized ~50,000 BTC from the Movie2K piracy network; sold 49,858 BTC by July 2024.",
         "Netted ~$2.89B at an average of about $57,900 per BTC.",
@@ -34,13 +34,13 @@ const DATA = {
     takeaway: "One sentence in a morning call \u2192 a sourced, on-chain data report \u2192 a post that travels. The desk doesn\u2019t just react to the timeline; it feeds it.",
   },
 
-  // ===== CASE STUDY 2 — LONG-FORM → SOCIAL (the daily brief) =====
+  // ===== CASE STUDY 2 — LONG-FORM → SOCIAL (the weekly podcast) =====
   amplify: {
     article: {
-      kicker: "Cryptonews · Daily brief on X",
-      title: "The morning crypto brief",
+      kicker: "Cryptonews Weekly · podcast \u2192 thread",
+      title: "The week, in one listen \u2014 then one thread",
       intro:
-        "Some days the desk's output isn't one deep piece — it's a dozen stories. The daily brief curates them into a single thread on @cryptonews: one tight, sourced summary per story, each linking back to the full article.",
+        "Cryptonews Weekly turns the week\u2019s crypto news into a podcast: gather what moved, write the script, record the episode with the hosts. When it\u2019s live, the same edit becomes a thread \u2014 each story a tight summary that links back to the full article.",
       covered: [
         "Trump pledges a US \u201CStrategic Bitcoin Reserve\u201D",
         "The Fed holds rates \u2014 its eighth straight pause",
@@ -51,9 +51,10 @@ const DATA = {
         "Web3 projects ride the Paris Olympics",
         "Senator Lummis revives her Bitcoin-reserve plan",
       ],
+      threadUrl: "https://x.com/cryptonews/status/1820480319146938777",
     },
     takeaway:
-      "A dozen separate stories \u2192 one scannable thread \u2192 eight links back into the site. The other direction of the flywheel: not amplifying one piece, but curating many into a single social-native format readers actually finish.",
+      "A week of scattered headlines \u2192 a scripted episode \u2192 one scannable thread that feeds the site. Synthesis, not just amplification: many inputs distilled into one piece people actually finish \u2014 in audio and on the timeline.",
   },
 };
 
@@ -68,8 +69,7 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
         label: "The morning call",
         caption: "An offhand \u201Cwhat if\u201D",
         nextLabel: "becomes a brief",
-        explanation:
-          "It started as a throwaway line in the morning editorial call \u2014 imagine if Germany hadn\u2019t sold its seized Bitcoin. With BTC pushing new all-time highs that week, the \u201Cwhat if\u201D was suddenly a number worth calculating.",
+        explanation: "A throwaway \u201Cwhat if\u201D in the editorial call: imagine Germany hadn\u2019t sold its seized Bitcoin.",
       },
       {
         key: "cs1-dig",
@@ -77,8 +77,7 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
         label: "The data dig",
         caption: "We ran the on-chain numbers",
         nextLabel: "becomes a report",
-        explanation:
-          "We pulled the on-chain sale data \u2014 49,858 BTC offloaded in July 2024 at an average of about $57,900 \u2014 and worked out what it would be worth at the current price. The gap came to roughly $3 billion left on the table.",
+        explanation: "Pull the on-chain sale data and calculate the gap at today\u2019s price \u2014 roughly $3B left on the table.",
       },
       {
         key: "cs1-report",
@@ -86,16 +85,14 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
         label: "The report",
         caption: "Sourced, data-driven story",
         nextLabel: "ships to the timeline",
-        explanation:
-          "The calculation became a published report: what Germany sold, why (a legal mandate to offload volatile seized assets fast), and the size of the miss \u2014 every figure sourced and dated.",
+        explanation: "Write it up as a sourced, dated report: what was sold, why, and the size of the miss.",
       },
       {
         key: "cs1-tweet",
         icon: "𝕏",
         label: "The tweet",
         caption: "Distributed on @cryptonews",
-        explanation:
-          "The report shipped to the timeline with one sharp stat \u2014 \u201Ca $3B miss\u201D \u2014 and a link. The morning-call aside had become a story thousands of people read.",
+        explanation: "Ship it to the timeline with one sharp stat and a link back to the full piece.",
       },
     ],
   },
@@ -104,35 +101,35 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
     accent: "teal",
     stages: [
       {
-        key: "cs2-coverage",
+        key: "cs2-news",
         icon: "🗞️",
-        label: "The day's coverage",
-        caption: "A dozen stories break",
-        nextLabel: "curated into",
-        explanation: "",
+        label: "The week's news",
+        caption: "Track what moved",
+        nextLabel: "shaped into a",
+        explanation: "Track everything that moved across the week and decide what actually matters.",
       },
       {
-        key: "cs2-curate",
-        icon: "✂️",
-        label: "Editorial curation",
-        caption: "What's worth surfacing",
-        nextLabel: "packaged as",
-        explanation: "",
+        key: "cs2-script",
+        icon: "✍️",
+        label: "The script",
+        caption: "Written for the ear",
+        nextLabel: "recorded as",
+        explanation: "Shape the standout stories into a tight spoken-word script \u2014 not an article, a conversation.",
+      },
+      {
+        key: "cs2-episode",
+        icon: "🎙️",
+        label: "The episode",
+        caption: "Cryptonews Weekly",
+        nextLabel: "reshared as",
+        explanation: "Record it as Cryptonews Weekly with the hosts \u2014 the week, digested in one listen.",
       },
       {
         key: "cs2-thread",
         icon: "🧵",
-        label: "The brief thread",
-        caption: "One scannable thread",
-        nextLabel: "drives clicks to",
-        explanation: "",
-      },
-      {
-        key: "cs2-articles",
-        icon: "📄",
-        label: "The full articles",
-        caption: "Each tweet links out",
-        explanation: "",
+        label: "The thread",
+        caption: "Each story links out",
+        explanation: "Once it\u2019s live, reshare as a thread \u2014 each story a summary that links back to the full coverage.",
       },
     ],
   },
@@ -142,7 +139,7 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
 // data-theme="dark" keeps them on-brand against the dark page.
 const TWEET_EMBEDS = {
   germany: `<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">😕 Germany sold nearly 50,000 BTC in 2024 for $2.89B. Today, it would be worth around $6B — a $3B miss!<br>We dug into the data to see what happened and why.<a href="https://x.com/hashtag/Bitcoin?src=hash&amp;ref_src=twsrc%5Etfw">#Bitcoin</a> <a href="https://x.com/hashtag/Germany?src=hash&amp;ref_src=twsrc%5Etfw">#Germany</a><a href="https://t.co/WE3DwNUqcu">https://t.co/WE3DwNUqcu</a></p>&mdash; Cryptonews.com (@cryptonews) <a href="https://x.com/cryptonews/status/1955243153654759800?ref_src=twsrc%5Etfw">August 12, 2025</a></blockquote>`,
-  dailyBrief: `<blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/cryptonews/status/1820482495881593222"></a></blockquote>`,
+  dailyBrief: `<blockquote class="twitter-tweet" data-theme="dark"><a href="https://x.com/cryptonews/status/1820480319146938777"></a></blockquote>`,
   others: [
     {
       key: "quantum",
@@ -210,7 +207,7 @@ function StageCard({ stage, accent }: { stage: Stage; accent: "teal" | "indigo" 
     <div className="flex-1 rounded-2xl border border-dark-border bg-dark-surface p-5">
       <span className={`inline-flex h-9 w-9 items-center justify-center rounded-lg text-base font-bold ${badge}`}>{stage.icon}</span>
       <p className="mt-3 font-heading text-sm font-bold text-dark-text">{stage.label}</p>
-      <p className="mt-1 text-xs leading-relaxed text-dark-text-muted">{stage.caption}</p>
+      <p className="mt-1.5 text-xs leading-relaxed text-dark-text-muted">{stage.explanation}</p>
     </div>
   );
 }
@@ -302,8 +299,8 @@ export default function FlywheelCaseStudy() {
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-dark-text-muted">
             At a crypto desk, social isn&apos;t where a story ends — it&apos;s where half of them start. Two worked
             examples from the <strong className="text-dark-text">@cryptonews</strong> account, both real: one where a
-            newsroom spark became a sourced data report, and one where a day of coverage was curated into a single
-            scannable thread.
+            newsroom spark became a sourced data report, and one where a week of news became a podcast — and then a
+            single thread.
           </p>
           <p className="mt-4 text-sm text-dark-text-muted">
             Hristina Yordanova · Managing Editor, Cryptonews · <a className="text-teal-light hover:underline" href="https://hristinayordanova.com">hristinayordanova.com</a>
@@ -320,6 +317,9 @@ export default function FlywheelCaseStudy() {
             Sometimes the story starts at the desk, not in the feed. This one began as an offhand &ldquo;what if&rdquo;
             in the morning editorial call, became a sourced, on-chain data report, and shipped to the timeline.
           </p>
+          <p className="mt-4 max-w-2xl border-l-2 border-indigo pl-4 text-sm font-medium text-dark-text">
+            The skill on show: reactive editorial judgment &mdash; turning a passing market moment into sourced, original depth.
+          </p>
 
           <Flow flow={FLOWS.cs1} />
 
@@ -335,7 +335,7 @@ export default function FlywheelCaseStudy() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 break-all text-xs text-teal-light">{R.article.url}</p>
+              <a href={R.article.url} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm font-medium text-teal-light hover:underline">Read the full report &rarr;</a>
             </div>
 
             <div className="space-y-5">
@@ -359,9 +359,12 @@ export default function FlywheelCaseStudy() {
       <section className="border-b border-dark-border">
         <div className="container-editorial py-14 md:py-20">
           <Pill tone="teal">Case study 2 · Long-form → social</Pill>
-          <h2 className="mt-4">The daily brief</h2>
+          <h2 className="mt-4">From a week of news to a podcast</h2>
           <p className="mt-3 max-w-2xl text-dark-text-muted">
             {A.article.intro}
+          </p>
+          <p className="mt-4 max-w-2xl border-l-2 border-teal pl-4 text-sm font-medium text-dark-text">
+            The skill on show: editorial synthesis &mdash; turning a week of fragmented news into one piece people actually finish, in two formats.
           </p>
 
           <Flow flow={FLOWS.cs2} />
@@ -371,7 +374,7 @@ export default function FlywheelCaseStudy() {
             <div className="rounded-2xl border border-teal/30 bg-dark-surface p-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-teal-light">{A.article.kicker}</p>
               <h3 className="mt-2 font-heading text-2xl font-bold leading-snug">{A.article.title}</h3>
-              <p className="mt-4 text-sm font-semibold text-dark-text">What this one thread covered</p>
+              <p className="mt-4 text-sm font-semibold text-dark-text">What that week's episode covered</p>
               <ul className="mt-3 space-y-2">
                 {A.article.covered.map((c, i) => (
                   <li key={i} className="flex gap-2 text-[0.95rem] leading-relaxed text-dark-text-muted">
@@ -379,6 +382,7 @@ export default function FlywheelCaseStudy() {
                   </li>
                 ))}
               </ul>
+              <a href={A.article.threadUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm font-medium text-teal-light hover:underline">View the thread on X &rarr;</a>
             </div>
 
             <div>
@@ -411,7 +415,7 @@ export default function FlywheelCaseStudy() {
           <h2 className="text-2xl">Publisher standards, not promotion</h2>
           <p className="mt-3 max-w-3xl text-dark-text-muted">
             Cryptonews is a newsroom, not an exchange — so the bar is editorial, not promotional. Every post is reported,
-            sourced and attributed; the live blog is timestamped and corrected in the open; sponsored content is clearly
+            sourced and attributed; rolling coverage is timestamped and corrected in the open; sponsored content is clearly
             labelled; and coverage carries the standard &ldquo;informational only, not financial advice&rdquo; line.
             Crypto promotions on the site are not directed at UK consumers under the Financial Promotions Regime.
           </p>
