@@ -1,9 +1,9 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { pageMeta } from "~/lib/seo";
 
 /* ────────────────────────────────────────────────────────────────────────
    UNLISTED CASE STUDY  ·  /work/dasdhjsfdhnasbj
-   - noindex (see meta below), not in nav, not in /work grid, not in sitemap..
+   - noindex (see meta below), not in nav, not in /work grid, not in sitemap.
    - Anyone with the link can view; treat the URL like a password.
 
    ✏️  EDIT HERE: everything specific lives in the DATA object below.
@@ -193,22 +193,23 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
 };
 
 // ✏️ Standalone tweet examples. Add `shot: "/work-assets/tweet-1.png"` per item.
-const TWEETS: Array<{ key: string; handle: string; body: string; url: string; note?: string }> = [
-  {
-    key: "quantum",
-    handle: "@cryptonews · 11 Aug 2025",
-    body: "🚨 New podcast with Andrew Cheung, CEO of 01 @01quantuminc\n\nIn this conversation, @mattzahab and @acheungquantum discuss:\n- The history of quantum computing\n- Quantum's threat to crypto\n- Building a quantum-safe crypto token\n\n🔊 Listen now",
-    url: "https://x.com/cryptonews/status/1954937872827461727",
-    note: "Podcast promo — a long interview packaged into a tight, scannable hook with the three reasons to listen up front.",
-  },
-  {
-    key: "xrp-ai",
-    handle: "@cryptonews · 11 Aug 2025",
-    body: "🤖 ChatGPT's $XRP analysis reveals perfect flag consolidation at $3.20 as SEC grants key Regulation D waiver, removing fundraising roadblocks, while Blue Origin accepts XRP payments.\n#XRP #ChatGPT",
-    url: "https://x.com/cryptonews/status/1955005650322497922",
-    note: "Riding a high-interest format — AI-driven price analysis — with a clear, sourced hook tying three real developments together.",
-  },
-];
+// Real @cryptonews tweet embeds (X widgets.js renders these on the client).
+// data-theme="dark" keeps them on-brand against the dark page.
+const TWEET_EMBEDS = {
+  germany: `<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">😕 Germany sold nearly 50,000 BTC in 2024 for $2.89B. Today, it would be worth around $6B — a $3B miss!<br>We dug into the data to see what happened and why.<a href="https://x.com/hashtag/Bitcoin?src=hash&amp;ref_src=twsrc%5Etfw">#Bitcoin</a> <a href="https://x.com/hashtag/Germany?src=hash&amp;ref_src=twsrc%5Etfw">#Germany</a><a href="https://t.co/WE3DwNUqcu">https://t.co/WE3DwNUqcu</a></p>&mdash; Cryptonews.com (@cryptonews) <a href="https://x.com/cryptonews/status/1955243153654759800?ref_src=twsrc%5Etfw">August 12, 2025</a></blockquote>`,
+  others: [
+    {
+      key: "quantum",
+      html: `<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">🚨 New podcast with Andrew Cheung, CEO of 01 <a href="https://x.com/01quantuminc?ref_src=twsrc%5Etfw">@01quantuminc</a><br><br>In this conversation, <a href="https://x.com/mattzahab?ref_src=twsrc%5Etfw">@mattzahab</a> and <a href="https://x.com/acheungquantum?ref_src=twsrc%5Etfw">@acheungquantum</a> discuss:<br><br>- The history of quantum computing<br>- Quantum's threat to crypto<br>- Building a quantum-safe crypto token<br><br>🔊 <a href="https://t.co/az78o1dNlX">https://t.co/az78o1dNlX</a> <a href="https://t.co/AaHBnbzCgh">pic.twitter.com/AaHBnbzCgh</a></p>&mdash; Cryptonews.com (@cryptonews) <a href="https://x.com/cryptonews/status/1954937872827461727?ref_src=twsrc%5Etfw">August 11, 2025</a></blockquote>`,
+      note: "Podcast promo — a long interview packaged into a tight, scannable hook with the three reasons to listen up front.",
+    },
+    {
+      key: "xrp-ai",
+      html: `<blockquote class="twitter-tweet" data-theme="dark"><p lang="en" dir="ltr">🤖 ChatGPT's <a href="https://x.com/search?q=%24XRP&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$XRP</a> analysis reveals perfect flag consolidation at $3.20 as SEC grants key Regulation D waiver, removing fundraising roadblocks, while Blue Origin accepts XRP payments.<a href="https://x.com/hashtag/XRP?src=hash&amp;ref_src=twsrc%5Etfw">#XRP</a> <a href="https://x.com/hashtag/ChatGPT?src=hash&amp;ref_src=twsrc%5Etfw">#ChatGPT</a><a href="https://t.co/aHJVWtHZsr">https://t.co/aHJVWtHZsr</a></p>&mdash; Cryptonews.com (@cryptonews) <a href="https://x.com/cryptonews/status/1955005650322497922?ref_src=twsrc%5Etfw">August 11, 2025</a></blockquote>`,
+      note: "Riding a high-interest format — AI-driven price analysis — with a clear, sourced hook tying three real developments together.",
+    },
+  ],
+};
 
 export function meta() {
   return pageMeta({
@@ -234,21 +235,12 @@ function Pill({ children, tone = "teal" }: { children: React.ReactNode; tone?: "
   );
 }
 
-function TweetCard({ handle, body, url, note, tone = "neutral" }: { handle: string; body: string; url: string; note?: string; tone?: "neutral" | "indigo" | "teal" }) {
-  const av = tone === "indigo" ? "bg-indigo text-white" : tone === "teal" ? "bg-teal text-white" : "bg-dark-surface-alt text-dark-text";
+function TweetEmbed({ html, note }: { html: string; note?: string }) {
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="block rounded-2xl border border-dark-border bg-dark-surface p-5 transition-colors hover:border-dark-text-muted/40">
-      <div className="flex items-center gap-3">
-        <span className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold ${av}`}>cn</span>
-        <div className="leading-tight">
-          <p className="text-sm font-semibold text-dark-text">Cryptonews.com</p>
-          <p className="text-xs text-dark-text-muted">{handle}</p>
-        </div>
-        <span className="ml-auto text-xs font-medium text-teal-light">View on X →</span>
-      </div>
-      <p className="mt-3 whitespace-pre-line text-[0.95rem] leading-relaxed text-dark-text">{body}</p>
-      {note && <p className="mt-3 border-t border-dark-border pt-3 text-xs leading-relaxed text-dark-text-muted">{note}</p>}
-    </a>
+    <div>
+      <div className="[&_.twitter-tweet]:!my-0 [&_blockquote]:!mx-0" dangerouslySetInnerHTML={{ __html: html }} />
+      {note && <p className="mt-3 text-xs leading-relaxed text-dark-text-muted">{note}</p>}
+    </div>
   );
 }
 
@@ -266,24 +258,14 @@ type Stage = {
 };
 type FlowDef = { eyebrow: string; accent: "teal" | "indigo"; stages: Stage[]; branch?: Stage };
 
-function StageCard({ stage, active, accent, onActivate }: { stage: Stage; active: boolean; accent: "teal" | "indigo"; onActivate: () => void }) {
-  const on = accent === "indigo";
-  const activeCls = on ? "border-indigo bg-indigo/10" : "border-teal bg-teal/10";
-  const idleCls = "border-dark-border bg-dark-surface hover:border-dark-text-muted/40";
-  const badge = on ? "bg-indigo text-white" : "bg-teal text-white";
+function StageCard({ stage, accent }: { stage: Stage; accent: "teal" | "indigo" }) {
+  const badge = accent === "indigo" ? "bg-indigo text-white" : "bg-teal text-white";
   return (
-    <button
-      type="button"
-      onMouseEnter={onActivate}
-      onFocus={onActivate}
-      onClick={onActivate}
-      aria-pressed={active}
-      className={`flex-1 rounded-2xl border p-5 text-left transition-all ${active ? activeCls : idleCls}`}
-    >
+    <div className="flex-1 rounded-2xl border border-dark-border bg-dark-surface p-5">
       <span className={`inline-flex h-9 w-9 items-center justify-center rounded-lg text-base font-bold ${badge}`}>{stage.icon}</span>
       <p className="mt-3 font-heading text-sm font-bold text-dark-text">{stage.label}</p>
       <p className="mt-1 text-xs leading-relaxed text-dark-text-muted">{stage.caption}</p>
-    </button>
+    </div>
   );
 }
 
@@ -300,44 +282,14 @@ function Connector({ label, accent }: { label?: string; accent: "teal" | "indigo
   );
 }
 
-function Panel({ stage, accent }: { stage: Stage; accent: "teal" | "indigo" }) {
-  const ring = accent === "indigo" ? "border-indigo/30" : "border-teal/30";
-  const tag = accent === "indigo" ? "text-indigo-light" : "text-teal-light";
-  return (
-    <div className={`mt-5 grid gap-6 rounded-2xl border ${ring} bg-dark-surface p-6 md:grid-cols-[1.1fr,1fr]`}>
-      <div className="overflow-hidden rounded-xl border border-dark-border bg-dark-surface-alt">
-        {stage.shot ? (
-          <img src={stage.shot} alt={stage.label} className="w-full" loading="lazy" />
-        ) : (
-          <div className="flex aspect-[16/10] items-center justify-center text-center text-sm text-dark-text-muted">
-            <span>
-              📷 Screenshot
-              <br />
-              <span className="text-xs">{stage.label}</span>
-            </span>
-          </div>
-        )}
-      </div>
-      <div>
-        <p className={`text-xs font-semibold uppercase tracking-widest ${tag}`}>{stage.label}</p>
-        <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{stage.explanation}</p>
-      </div>
-    </div>
-  );
-}
-
 function Flow({ flow }: { flow: FlowDef }) {
-  const all = flow.branch ? [...flow.stages, flow.branch] : flow.stages;
-  const [active, setActive] = useState(flow.stages[0].key);
-  const current = all.find((s) => s.key === active) ?? flow.stages[0];
   const branchAccent = flow.accent === "indigo" ? "text-indigo-light" : "text-teal-light";
   return (
     <div className="mt-8">
-      <p className={`mb-4 text-xs font-semibold uppercase tracking-widest ${branchAccent}`}>{flow.eyebrow} ↓</p>
       <div className="flex flex-col md:flex-row md:items-stretch">
         {flow.stages.map((s, i) => (
           <Fragment key={s.key}>
-            <StageCard stage={s} active={active === s.key} accent={flow.accent} onActivate={() => setActive(s.key)} />
+            <StageCard stage={s} accent={flow.accent} />
             {i < flow.stages.length - 1 && <Connector label={s.nextLabel} accent={flow.accent} />}
           </Fragment>
         ))}
@@ -350,21 +302,19 @@ function Flow({ flow }: { flow: FlowDef }) {
               <span className="text-xl">↘</span>
               <span>{flow.branch.fromLabel}</span>
             </div>
-            <StageCard stage={flow.branch} active={active === flow.branch.key} accent={flow.accent} onActivate={() => setActive(flow.branch!.key)} />
+            <StageCard stage={flow.branch} accent={flow.accent} />
           </div>
         </div>
       )}
-
-      <Panel stage={current} accent={flow.accent} />
     </div>
   );
 }
 
 function TweetsGrid() {
   return (
-    <div className="mt-8 grid gap-5 md:grid-cols-2">
-      {TWEETS.map((t) => (
-        <TweetCard key={t.key} handle={t.handle} body={t.body} url={t.url} note={t.note} />
+    <div className="mt-8 grid items-start gap-8 md:grid-cols-2">
+      {TWEET_EMBEDS.others.map((t) => (
+        <TweetEmbed key={t.key} html={t.html} note={t.note} />
       ))}
     </div>
   );
@@ -372,6 +322,22 @@ function TweetsGrid() {
 
 export default function FlywheelCaseStudy() {
   const { reactive: R, amplify: A } = DATA;
+
+  useEffect(() => {
+    const run = () => (window as unknown as { twttr?: { widgets?: { load?: () => void } } }).twttr?.widgets?.load?.();
+    const existing = document.getElementById("x-widgets-js");
+    if (existing) {
+      run();
+      return;
+    }
+    const s = document.createElement("script");
+    s.id = "x-widgets-js";
+    s.src = "https://platform.x.com/widgets.js";
+    s.async = true;
+    s.charset = "utf-8";
+    s.onload = run;
+    document.body.appendChild(s);
+  }, []);
 
   return (
     <article className="bg-dark-bg">
@@ -430,7 +396,7 @@ export default function FlywheelCaseStudy() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-indigo-light">{R.origin.label}</p>
                 <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{R.origin.text}</p>
               </div>
-              <TweetCard handle={R.tweet.handle} body={R.tweet.body} url={R.tweet.url} tone="indigo" />
+              <TweetEmbed html={TWEET_EMBEDS.germany} />
             </div>
           </div>
 
