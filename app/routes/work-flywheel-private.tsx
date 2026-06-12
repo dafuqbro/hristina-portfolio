@@ -424,12 +424,6 @@ export default function FlywheelCaseStudy() {
               <span key={s} className="rounded-full border border-dark-border px-4 py-2 text-sm text-dark-text-muted">{s}</span>
             ))}
           </div>
-
-          <p className="mt-12 border-t border-dark-border pt-6 text-xs leading-relaxed text-dark-text-muted">
-            Built on real Cryptonews coverage. The report findings, article titles, bylines and publish/update times are accurate as published.
-            Individual tweets and live-blog entries shown here are reconstructions of the workflow; exact wording, timestamps and engagement
-            figures should be confirmed against the live posts. · <a className="text-teal-light hover:underline" href="https://hristinayordanova.com">hristinayordanova.com</a> · @HYordanova_
-          </p>
         </div>
       </section>
     </article>
