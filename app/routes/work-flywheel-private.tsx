@@ -19,38 +19,27 @@ const DATA = {
   reactive: {
     article: {
       // REAL
-      kicker: "Cryptonews · Bitcoin News · LIVE",
-      title: "[LIVE] Bitcoin Inches Closer to a New ATH — Can BTC Hit $125K Today?",
-      author: "Hristina Yordanova, Managing Editor (verified)",
-      published: "11 Aug 2025 · 09:56 UTC",
-      updated: "11 Aug 2025 · 15:35 UTC",
-      url: "cryptonews.com/news/live-bitcoin-price-to-hit-125k-today-news-updates-11-august-2025",
-      tags: ["Bitcoin", "Cryptocurrency", "Market"],
-      dek: "As prices surge toward a fresh all-time high, traders worldwide are asking the same question — can the Bitcoin price hit $125,000 today?", // REAL (meta description)
+      kicker: "Cryptonews · Report · On-chain data",
+      title: "Germany Missed Out on $3.17B From Selling BTC Before the Rally",
+      url: "cryptonews.com/reports/germany-missed-out-on-3-17b-from-selling-btc-before-the-rally",
+      facts: [
+        "Seized ~50,000 BTC from the Movie2K piracy network; sold 49,858 BTC by July 2024.",
+        "Netted ~$2.89B at an average of about $57,900 per BTC.",
+        "The sale was legally mandated \u2014 German law requires offloading volatile seized assets.",
+        "By August 2025, with BTC above $122K, the stash would be worth ~$6B \u2014 a ~$3.17B miss.",
+      ],
     },
-    signal: {
-      time: "~09:50 UTC",
-      text: "Bitcoin pushing within ~2% of its all-time high on the US pre-open. Spot volume climbing, $125K chatter spiking across crypto X. Desk call: this is a live-coverage moment, not a single post.",
+    origin: {
+      label: "Where it started",
+      text: "A morning editorial call. Someone floated the \u201Cwhat if\u201D \u2014 imagine if Germany had simply held. With Bitcoin tagging new highs that day, the desk turned an offhand remark into a data assignment: calculate the miss, source every figure, ship it.",
     },
-    // RECONSTRUCTED — replace with the real launch tweet text + time + metrics
-    breakingTweet: {
-      time: "11 Aug · 09:58 UTC",
-      body: "🚨 Bitcoin is knocking on the door of a new all-time high.\n\nTraders everywhere are asking the same thing: can $BTC hit $125K today?\n\nWe're covering it LIVE — price, charts and expert reactions, updated through the day 👇\n#Bitcoin #BTC",
-      link: "cryptonews.com/news/live-bitcoin-price...",
-      metrics: "— impressions · — reposts · — link clicks", // ✏️ add real numbers
+    // REAL tweet \u2014 @cryptonews, 12 Aug 2025
+    tweet: {
+      handle: "@cryptonews \u00B7 12 Aug 2025",
+      body: "😕 Germany sold nearly 50,000 BTC in 2024 for $2.89B. Today, it would be worth around $6B \u2014 a $3B miss!\n\nWe dug into the data to see what happened and why.\n#Bitcoin #Germany",
+      url: "https://x.com/cryptonews/status/1955243153654759800",
     },
-    // RECONSTRUCTED cadence between the REAL 09:56 → 15:35 window.
-    // ✏️ Replace each entry with the actual live-blog update + the social action that went with it.
-    timeline: [
-      { time: "09:56", kind: "publish", label: "Live blog goes live", text: "Coverage opens. BTC trading near its all-time high as US desks come online; $125K framed as the level of the day. Live schema + Google News submission fire on publish." },
-      { time: "10:40", kind: "update", label: "New intraday high", text: "BTC tags a fresh intraday high. Chart embed updated; $125K now within striking distance." },
-      { time: "11:25", kind: "social", label: "Quote-tweet the candle", text: "Screenshot of the breakout candle pushed as a quote-tweet on @cryptonews: “$BTC just printed a fresh intraday high — $125K watch is ON.” Drives readers back into the live blog." },
-      { time: "12:30", kind: "update", label: "Expert reaction added", text: "Analyst reaction added to the blog: $125K is “more psychological than technical,” with real resistance sitting higher. Attributed and timestamped." },
-      { time: "13:50", kind: "update", label: "Momentum cools", text: "Pullback noted: BTC eases off the high as spot momentum fades; funding still elevated. Honest, real-time — we cover the fade as well as the pump." },
-      { time: "15:35", kind: "wrap", label: "Session wrap", text: "Closing update: BTC holds near the highs but shy of $125K. Coverage paused with a recap and “what to watch tomorrow.” Live blog now an evergreen, ranking asset." },
-    ],
-    loopBack: "The recurring reply — “why is $125K the line everyone's watching?” — became the next day's explainer, which then fed straight into Direction 1's amplification engine. The loop closes.",
-    results: "— peak concurrent readers · — session pageviews · — avg. time on page · — Google News / Discover impressions  (✏️ add real figures)",
+    takeaway: "One sentence in a morning call \u2192 a sourced, on-chain data report \u2192 a post that travels. The desk doesn\u2019t just react to the timeline; it feeds it.",
   },
 
   // ===== DIRECTION 1 — LONG-FORM → SOCIAL (the crashes report) =====
@@ -123,31 +112,40 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
     accent: "indigo",
     stages: [
       {
+        key: "cs1-spark",
+        icon: "☕",
+        label: "The morning call",
+        caption: "An offhand \u201Cwhat if\u201D",
+        nextLabel: "becomes a brief",
+        explanation:
+          "It started as a throwaway line in the morning editorial call \u2014 imagine if Germany hadn\u2019t sold its seized Bitcoin. With BTC pushing new all-time highs that week, the \u201Cwhat if\u201D was suddenly a number worth calculating.",
+      },
+      {
+        key: "cs1-dig",
+        icon: "📊",
+        label: "The data dig",
+        caption: "We ran the on-chain numbers",
+        nextLabel: "becomes a report",
+        explanation:
+          "We pulled the on-chain sale data \u2014 49,858 BTC offloaded in July 2024 at an average of about $57,900 \u2014 and worked out what it would be worth at the current price. The gap came to roughly $3 billion left on the table.",
+      },
+      {
+        key: "cs1-report",
+        icon: "📄",
+        label: "The report",
+        caption: "Sourced, data-driven story",
+        nextLabel: "ships to the timeline",
+        explanation:
+          "The calculation became a published report: what Germany sold, why (a legal mandate to offload volatile seized assets fast), and the size of the miss \u2014 every figure sourced and dated.",
+      },
+      {
         key: "cs1-tweet",
         icon: "𝕏",
-        label: "Breaking tweet",
-        caption: "Spotted the move, posted in minutes",
-        nextLabel: "drives readers into",
-        // shot: "/work-assets/cs1-tweet.png",
+        label: "The tweet",
+        caption: "Distributed on @cryptonews",
+        // shot: "/work-assets/cs1-germany-tweet.png",
         explanation:
-          "The moment Bitcoin came within striking distance of a new all-time high, a breaking post went out on @cryptonews — the level, the question everyone was already asking, and a link into live coverage. Getting there first is the whole point.",
-      },
-      {
-        key: "cs1-live",
-        icon: "🔴",
-        label: "LIVE article",
-        caption: "Rolling, sourced live blog",
-        nextLabel: "re-cut for",
-        explanation:
-          "That post fed a live blog updated through the session — timestamped price moves, chart embeds and expert reactions, each entry sourced. It's the asset that captures the day's search demand and keeps ranking long after the moment passes.",
-      },
-      {
-        key: "cs1-recut",
-        icon: "🎬",
-        label: "Re-cut: Telegram / TikTok",
-        caption: "Repackaged per platform",
-        explanation:
-          "Key beats from the live blog were re-cut for other surfaces — a Telegram broadcast for the community, a short vertical recap for TikTok — each native to where it lives, each pointing back to the coverage.",
+          "The report shipped to the timeline with one sharp stat \u2014 \u201Ca $3B miss\u201D \u2014 and a link. The morning-call aside had become a story thousands of people read.",
       },
     ],
   },
@@ -195,13 +193,21 @@ const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
 };
 
 // ✏️ Standalone tweet examples. Add `shot: "/work-assets/tweet-1.png"` per item.
-const TWEETS: Array<{ key: string; shotLabel: string; note?: string; shot?: string }> = [
-  { key: "tw1", shotLabel: "Tweet 1" },
-  { key: "tw2", shotLabel: "Tweet 2" },
-  { key: "tw3", shotLabel: "Tweet 3" },
-  { key: "tw4", shotLabel: "Tweet 4" },
-  { key: "tw5", shotLabel: "Tweet 5" },
-  { key: "tw6", shotLabel: "Tweet 6" },
+const TWEETS: Array<{ key: string; handle: string; body: string; url: string; note?: string }> = [
+  {
+    key: "quantum",
+    handle: "@cryptonews · 11 Aug 2025",
+    body: "🚨 New podcast with Andrew Cheung, CEO of 01 @01quantuminc\n\nIn this conversation, @mattzahab and @acheungquantum discuss:\n- The history of quantum computing\n- Quantum's threat to crypto\n- Building a quantum-safe crypto token\n\n🔊 Listen now",
+    url: "https://x.com/cryptonews/status/1954937872827461727",
+    note: "Podcast promo — a long interview packaged into a tight, scannable hook with the three reasons to listen up front.",
+  },
+  {
+    key: "xrp-ai",
+    handle: "@cryptonews · 11 Aug 2025",
+    body: "🤖 ChatGPT's $XRP analysis reveals perfect flag consolidation at $3.20 as SEC grants key Regulation D waiver, removing fundraising roadblocks, while Blue Origin accepts XRP payments.\n#XRP #ChatGPT",
+    url: "https://x.com/cryptonews/status/1955005650322497922",
+    note: "Riding a high-interest format — AI-driven price analysis — with a clear, sourced hook tying three real developments together.",
+  },
 ];
 
 export function meta() {
@@ -228,30 +234,23 @@ function Pill({ children, tone = "teal" }: { children: React.ReactNode; tone?: "
   );
 }
 
-function Tweet({ time, body, link, metrics, tone = "indigo" }: { time: string; body: string; link?: string; metrics?: string; tone?: "teal" | "indigo" }) {
-  const ring = tone === "indigo" ? "bg-indigo" : "bg-teal";
+function TweetCard({ handle, body, url, note, tone = "neutral" }: { handle: string; body: string; url: string; note?: string; tone?: "neutral" | "indigo" | "teal" }) {
+  const av = tone === "indigo" ? "bg-indigo text-white" : tone === "teal" ? "bg-teal text-white" : "bg-dark-surface-alt text-dark-text";
   return (
-    <div className="rounded-2xl border border-dark-border bg-dark-surface p-5">
+    <a href={url} target="_blank" rel="noopener noreferrer" className="block rounded-2xl border border-dark-border bg-dark-surface p-5 transition-colors hover:border-dark-text-muted/40">
       <div className="flex items-center gap-3">
-        <span className={`flex h-9 w-9 items-center justify-center rounded-full ${ring} text-sm font-bold text-white`}>cn</span>
+        <span className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold ${av}`}>cn</span>
         <div className="leading-tight">
           <p className="text-sm font-semibold text-dark-text">Cryptonews.com</p>
-          <p className="text-xs text-dark-text-muted">@cryptonews · {time}</p>
+          <p className="text-xs text-dark-text-muted">{handle}</p>
         </div>
+        <span className="ml-auto text-xs font-medium text-teal-light">View on X →</span>
       </div>
       <p className="mt-3 whitespace-pre-line text-[0.95rem] leading-relaxed text-dark-text">{body}</p>
-      {link && <p className="mt-2 text-sm text-teal-light">{link}</p>}
-      {metrics && <p className="mt-3 border-t border-dark-border pt-3 text-xs text-dark-text-muted">{metrics}</p>}
-    </div>
+      {note && <p className="mt-3 border-t border-dark-border pt-3 text-xs leading-relaxed text-dark-text-muted">{note}</p>}
+    </a>
   );
 }
-
-const KIND_DOT: Record<string, string> = {
-  publish: "bg-indigo",
-  update: "bg-indigo-light",
-  social: "bg-teal-light",
-  wrap: "bg-indigo",
-};
 
 /* ── interactive flow (hover on desktop, tap on mobile; shared panel below) ── */
 
@@ -363,18 +362,9 @@ function Flow({ flow }: { flow: FlowDef }) {
 
 function TweetsGrid() {
   return (
-    <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mt-8 grid gap-5 md:grid-cols-2">
       {TWEETS.map((t) => (
-        <div key={t.key} className="rounded-2xl border border-dark-border bg-dark-surface p-3">
-          {t.shot ? (
-            <img src={t.shot} alt={t.note || "Tweet"} className="w-full rounded-lg" loading="lazy" />
-          ) : (
-            <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-dark-surface-alt text-center text-sm text-dark-text-muted">
-              <span>📷 {t.shotLabel}</span>
-            </div>
-          )}
-          {t.note && <p className="mt-3 px-1 text-sm leading-relaxed text-dark-text-muted">{t.note}</p>}
-        </div>
+        <TweetCard key={t.key} handle={t.handle} body={t.body} url={t.url} note={t.note} />
       ))}
     </div>
   );
@@ -411,66 +401,43 @@ export default function FlywheelCaseStudy() {
       {/* ===================== DIRECTION 2 — REACTIVE ===================== */}
       <section className="border-b border-dark-border">
         <div className="container-editorial py-14 md:py-20">
-          <Pill tone="indigo">Direction 2 · Capture</Pill>
-          <h2 className="mt-4">Reactive social → long-form</h2>
+          <Pill tone="indigo">Case study 1 · Reactive → long-form</Pill>
+          <h2 className="mt-4">From a morning call to a data story</h2>
           <p className="mt-3 max-w-2xl text-dark-text-muted">
-            A price move breaks, a post is live within minutes, and the engagement steers a rolling, sourced live article
-            that owns the day&apos;s search demand. Here&apos;s the real one, minute by minute.
+            Sometimes the story starts at the desk, not in the feed. This one began as an offhand &ldquo;what if&rdquo;
+            in the morning editorial call, became a sourced, on-chain data report, and shipped to the timeline.
           </p>
 
           <Flow flow={FLOWS.cs1} />
 
-          {/* The article anchor */}
+          {/* Report anchor + origin + real tweet */}
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
             <div className="rounded-2xl border border-indigo/30 bg-dark-surface p-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-indigo-light">{R.article.kicker}</p>
               <h3 className="mt-2 font-heading text-2xl font-bold leading-snug">{R.article.title}</h3>
-              <p className="mt-3 text-dark-text-muted">{R.article.dek}</p>
-              <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">
-                <div><dt className="text-dark-text-muted">Author</dt><dd className="font-medium">{R.article.author}</dd></div>
-                <div><dt className="text-dark-text-muted">Tags</dt><dd className="font-medium">{R.article.tags.join(", ")}</dd></div>
-                <div><dt className="text-dark-text-muted">Published</dt><dd className="font-medium">{R.article.published}</dd></div>
-                <div><dt className="text-dark-text-muted">Last updated</dt><dd className="font-medium">{R.article.updated}</dd></div>
-              </dl>
+              <ul className="mt-5 space-y-2">
+                {R.article.facts.map((f, i) => (
+                  <li key={i} className="flex gap-2 text-[0.95rem] leading-relaxed text-dark-text-muted">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-light" />{f}
+                  </li>
+                ))}
+              </ul>
               <p className="mt-4 break-all text-xs text-teal-light">{R.article.url}</p>
             </div>
 
-            {/* Signal + breaking tweet */}
             <div className="space-y-5">
               <div className="rounded-2xl border border-dark-border bg-dark-surface-alt p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-indigo-light">The signal · {R.signal.time}</p>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{R.signal.text}</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-indigo-light">{R.origin.label}</p>
+                <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{R.origin.text}</p>
               </div>
-              <Tweet time={R.breakingTweet.time} body={R.breakingTweet.body} link={R.breakingTweet.link} metrics={R.breakingTweet.metrics} tone="indigo" />
+              <TweetCard handle={R.tweet.handle} body={R.tweet.body} url={R.tweet.url} tone="indigo" />
             </div>
           </div>
 
-          {/* Timeline */}
-          <h3 className="mt-12 font-heading text-xl font-semibold">The live window — 09:56 → 15:35 UTC</h3>
-          <ol className="mt-6 space-y-0 border-l-2 border-dark-border pl-8">
-            {R.timeline.map((t, i) => (
-              <li key={i} className="relative pb-8 last:pb-0">
-                <span className={`absolute -left-[41px] top-1 h-4 w-4 rounded-full border-2 border-dark-bg ${KIND_DOT[t.kind] || "bg-indigo"}`} />
-                <div className="flex flex-wrap items-baseline gap-x-3">
-                  <span className="font-mono text-sm font-semibold text-indigo-light">{t.time} UTC</span>
-                  <span className="text-sm font-semibold text-dark-text">{t.label}</span>
-                  {t.kind === "social" && <span className="rounded bg-teal/15 px-1.5 py-0.5 text-[0.7rem] font-semibold uppercase tracking-wide text-teal-light">social</span>}
-                </div>
-                <p className="mt-1.5 text-[0.95rem] leading-relaxed text-dark-text-muted">{t.text}</p>
-              </li>
-            ))}
-          </ol>
-
-          {/* Loop + results */}
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            <div className="rounded-2xl bg-dark-surface-alt p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-indigo-light">↺ Closes the loop</p>
-              <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{R.loopBack}</p>
-            </div>
-            <div className="rounded-2xl bg-dark-surface-alt p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-dark-text-muted">Results</p>
-              <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{R.results}</p>
-            </div>
+          {/* Takeaway */}
+          <div className="mt-8 rounded-2xl bg-dark-surface-alt p-6">
+            <p className="text-xs font-semibold uppercase tracking-widest text-indigo-light">↺ What it shows</p>
+            <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{R.takeaway}</p>
           </div>
         </div>
       </section>
@@ -478,7 +445,7 @@ export default function FlywheelCaseStudy() {
       {/* ===================== DIRECTION 1 — AMPLIFY ===================== */}
       <section className="border-b border-dark-border">
         <div className="container-editorial py-14 md:py-20">
-          <Pill tone="teal">Direction 1 · Amplify</Pill>
+          <Pill tone="teal">Case study 2 · Long-form → social</Pill>
           <h2 className="mt-4">Long-form → social</h2>
           <p className="mt-3 max-w-2xl text-dark-text-muted">
             One data-rich report becomes a week of platform-native posts — each native to its feed, each linking back,
@@ -529,7 +496,7 @@ export default function FlywheelCaseStudy() {
         <div className="container-editorial py-14 md:py-20">
           <h2 className="text-2xl">Tweets in the wild</h2>
           <p className="mt-3 max-w-2xl text-dark-text-muted">
-            Standalone examples — no flow, just the posts.
+            A few more from the @cryptonews timeline — showing range across formats, from podcast promos to AI-angle market news.
           </p>
           <TweetsGrid />
         </div>
