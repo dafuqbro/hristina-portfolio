@@ -1,3 +1,4 @@
+import { Fragment, useState } from "react";
 import { pageMeta } from "~/lib/seo";
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -110,6 +111,99 @@ const DATA = {
   },
 };
 
+/* ────────────────────────────────────────────────────────────────────────
+   FLOW DIAGRAMS  ·  the hover/tap stages + shared panel
+   ✏️ Per stage: set `shot` to an image path once you upload screenshots
+      (e.g. "/work-assets/cs1-tweet.png" in /public/work-assets/), and refine
+      `explanation` from your direction. `caption` is the short line on the card.
+   ──────────────────────────────────────────────────────────────────────── */
+const FLOWS: Record<"cs1" | "cs2", FlowDef> = {
+  cs1: {
+    eyebrow: "Hover or tap each stage",
+    accent: "indigo",
+    stages: [
+      {
+        key: "cs1-tweet",
+        icon: "𝕏",
+        label: "Breaking tweet",
+        caption: "Spotted the move, posted in minutes",
+        nextLabel: "drives readers into",
+        // shot: "/work-assets/cs1-tweet.png",
+        explanation:
+          "The moment Bitcoin came within striking distance of a new all-time high, a breaking post went out on @cryptonews — the level, the question everyone was already asking, and a link into live coverage. Getting there first is the whole point.",
+      },
+      {
+        key: "cs1-live",
+        icon: "🔴",
+        label: "LIVE article",
+        caption: "Rolling, sourced live blog",
+        nextLabel: "re-cut for",
+        explanation:
+          "That post fed a live blog updated through the session — timestamped price moves, chart embeds and expert reactions, each entry sourced. It's the asset that captures the day's search demand and keeps ranking long after the moment passes.",
+      },
+      {
+        key: "cs1-recut",
+        icon: "🎬",
+        label: "Re-cut: Telegram / TikTok",
+        caption: "Repackaged per platform",
+        explanation:
+          "Key beats from the live blog were re-cut for other surfaces — a Telegram broadcast for the community, a short vertical recap for TikTok — each native to where it lives, each pointing back to the coverage.",
+      },
+    ],
+  },
+  cs2: {
+    eyebrow: "Hover or tap each stage",
+    accent: "teal",
+    stages: [
+      {
+        key: "cs2-tweet",
+        icon: "𝕏",
+        label: "Launch thread",
+        caption: "Report lands as a thread",
+        nextLabel: "expands the depth in",
+        explanation:
+          "The report went out as a thread built to carry the whole argument — one tweet per crisis, the standout stat up front, the link to the full piece in the last post.",
+      },
+      {
+        key: "cs2-long",
+        icon: "📄",
+        label: "Long-form report",
+        caption: "The evergreen anchor",
+        nextLabel: "re-cut vertical for",
+        explanation:
+          "The anchor: a data-rich report comparing gold, Bitcoin and the S&P across four crises. Evergreen, sourced and built to rank — the kind of piece you can amplify for weeks, not hours.",
+      },
+      {
+        key: "cs2-tiktok",
+        icon: "🎬",
+        label: "TikTok",
+        caption: "60-second verdict",
+        explanation:
+          "The findings became a 60-second vertical — three charts to a verdict — captioned for silent viewing and watermarked back to the report.",
+      },
+    ],
+    branch: {
+      key: "cs2-more",
+      icon: "🧵",
+      label: "More tweets",
+      caption: "Loops back out as fresh social",
+      fromLabel: "loops back out as",
+      explanation:
+        "The replies and questions the thread and video pulled in became the next round of posts — a poll, a stat card, a follow-up angle — feeding the cycle back to the top.",
+    },
+  },
+};
+
+// ✏️ Standalone tweet examples. Add `shot: "/work-assets/tweet-1.png"` per item.
+const TWEETS: Array<{ key: string; shotLabel: string; note?: string; shot?: string }> = [
+  { key: "tw1", shotLabel: "Tweet 1" },
+  { key: "tw2", shotLabel: "Tweet 2" },
+  { key: "tw3", shotLabel: "Tweet 3" },
+  { key: "tw4", shotLabel: "Tweet 4" },
+  { key: "tw5", shotLabel: "Tweet 5" },
+  { key: "tw6", shotLabel: "Tweet 6" },
+];
+
 export function meta() {
   return pageMeta({
     title: "Content Flywheel — Cryptonews Case Study",
@@ -159,6 +253,133 @@ const KIND_DOT: Record<string, string> = {
   wrap: "bg-indigo",
 };
 
+/* ── interactive flow (hover on desktop, tap on mobile; shared panel below) ── */
+
+type Stage = {
+  key: string;
+  icon: string;
+  label: string;
+  caption: string;
+  explanation: string;
+  nextLabel?: string;
+  fromLabel?: string;
+  shot?: string;
+};
+type FlowDef = { eyebrow: string; accent: "teal" | "indigo"; stages: Stage[]; branch?: Stage };
+
+function StageCard({ stage, active, accent, onActivate }: { stage: Stage; active: boolean; accent: "teal" | "indigo"; onActivate: () => void }) {
+  const on = accent === "indigo";
+  const activeCls = on ? "border-indigo bg-indigo/10" : "border-teal bg-teal/10";
+  const idleCls = "border-dark-border bg-dark-surface hover:border-dark-text-muted/40";
+  const badge = on ? "bg-indigo text-white" : "bg-teal text-white";
+  return (
+    <button
+      type="button"
+      onMouseEnter={onActivate}
+      onFocus={onActivate}
+      onClick={onActivate}
+      aria-pressed={active}
+      className={`flex-1 rounded-2xl border p-5 text-left transition-all ${active ? activeCls : idleCls}`}
+    >
+      <span className={`inline-flex h-9 w-9 items-center justify-center rounded-lg text-base font-bold ${badge}`}>{stage.icon}</span>
+      <p className="mt-3 font-heading text-sm font-bold text-dark-text">{stage.label}</p>
+      <p className="mt-1 text-xs leading-relaxed text-dark-text-muted">{stage.caption}</p>
+    </button>
+  );
+}
+
+function Connector({ label, accent }: { label?: string; accent: "teal" | "indigo" }) {
+  const c = accent === "indigo" ? "text-indigo-light" : "text-teal-light";
+  return (
+    <div className="flex shrink-0 items-center justify-center py-1 md:w-28 md:flex-col md:py-0">
+      {label && <span className={`mr-2 text-[0.7rem] font-semibold uppercase tracking-wide md:mr-0 md:mb-1 md:text-center ${c}`}>{label}</span>}
+      <span className={`text-xl ${c}`}>
+        <span className="md:hidden">↓</span>
+        <span className="hidden md:inline">→</span>
+      </span>
+    </div>
+  );
+}
+
+function Panel({ stage, accent }: { stage: Stage; accent: "teal" | "indigo" }) {
+  const ring = accent === "indigo" ? "border-indigo/30" : "border-teal/30";
+  const tag = accent === "indigo" ? "text-indigo-light" : "text-teal-light";
+  return (
+    <div className={`mt-5 grid gap-6 rounded-2xl border ${ring} bg-dark-surface p-6 md:grid-cols-[1.1fr,1fr]`}>
+      <div className="overflow-hidden rounded-xl border border-dark-border bg-dark-surface-alt">
+        {stage.shot ? (
+          <img src={stage.shot} alt={stage.label} className="w-full" loading="lazy" />
+        ) : (
+          <div className="flex aspect-[16/10] items-center justify-center text-center text-sm text-dark-text-muted">
+            <span>
+              📷 Screenshot
+              <br />
+              <span className="text-xs">{stage.label}</span>
+            </span>
+          </div>
+        )}
+      </div>
+      <div>
+        <p className={`text-xs font-semibold uppercase tracking-widest ${tag}`}>{stage.label}</p>
+        <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{stage.explanation}</p>
+      </div>
+    </div>
+  );
+}
+
+function Flow({ flow }: { flow: FlowDef }) {
+  const all = flow.branch ? [...flow.stages, flow.branch] : flow.stages;
+  const [active, setActive] = useState(flow.stages[0].key);
+  const current = all.find((s) => s.key === active) ?? flow.stages[0];
+  const branchAccent = flow.accent === "indigo" ? "text-indigo-light" : "text-teal-light";
+  return (
+    <div className="mt-8">
+      <p className={`mb-4 text-xs font-semibold uppercase tracking-widest ${branchAccent}`}>{flow.eyebrow} ↓</p>
+      <div className="flex flex-col md:flex-row md:items-stretch">
+        {flow.stages.map((s, i) => (
+          <Fragment key={s.key}>
+            <StageCard stage={s} active={active === s.key} accent={flow.accent} onActivate={() => setActive(s.key)} />
+            {i < flow.stages.length - 1 && <Connector label={s.nextLabel} accent={flow.accent} />}
+          </Fragment>
+        ))}
+      </div>
+
+      {flow.branch && (
+        <div className="md:flex md:justify-end">
+          <div className="md:w-[62%]">
+            <div className={`flex items-center gap-2 py-2 text-[0.7rem] font-semibold uppercase tracking-wide ${branchAccent}`}>
+              <span className="text-xl">↘</span>
+              <span>{flow.branch.fromLabel}</span>
+            </div>
+            <StageCard stage={flow.branch} active={active === flow.branch.key} accent={flow.accent} onActivate={() => setActive(flow.branch!.key)} />
+          </div>
+        </div>
+      )}
+
+      <Panel stage={current} accent={flow.accent} />
+    </div>
+  );
+}
+
+function TweetsGrid() {
+  return (
+    <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {TWEETS.map((t) => (
+        <div key={t.key} className="rounded-2xl border border-dark-border bg-dark-surface p-3">
+          {t.shot ? (
+            <img src={t.shot} alt={t.note || "Tweet"} className="w-full rounded-lg" loading="lazy" />
+          ) : (
+            <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-dark-surface-alt text-center text-sm text-dark-text-muted">
+              <span>📷 {t.shotLabel}</span>
+            </div>
+          )}
+          {t.note && <p className="mt-3 px-1 text-sm leading-relaxed text-dark-text-muted">{t.note}</p>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function FlywheelCaseStudy() {
   const { reactive: R, amplify: A } = DATA;
 
@@ -196,6 +417,8 @@ export default function FlywheelCaseStudy() {
             A price move breaks, a post is live within minutes, and the engagement steers a rolling, sourced live article
             that owns the day&apos;s search demand. Here&apos;s the real one, minute by minute.
           </p>
+
+          <Flow flow={FLOWS.cs1} />
 
           {/* The article anchor */}
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
@@ -262,6 +485,8 @@ export default function FlywheelCaseStudy() {
             each compounding reach and SEO.
           </p>
 
+          <Flow flow={FLOWS.cs2} />
+
           {/* Report anchor */}
           <div className="mt-8 rounded-2xl border border-teal/30 bg-dark-surface p-6">
             <p className="text-xs font-semibold uppercase tracking-widest text-teal-light">{A.article.kicker}</p>
@@ -296,6 +521,17 @@ export default function FlywheelCaseStudy() {
             <p className="text-xs font-semibold uppercase tracking-widest text-dark-text-muted">Results</p>
             <p className="mt-2 text-[0.95rem] leading-relaxed text-dark-text-muted">{A.results}</p>
           </div>
+        </div>
+      </section>
+
+      {/* Tweets in the wild */}
+      <section className="border-b border-dark-border">
+        <div className="container-editorial py-14 md:py-20">
+          <h2 className="text-2xl">Tweets in the wild</h2>
+          <p className="mt-3 max-w-2xl text-dark-text-muted">
+            Standalone examples — no flow, just the posts.
+          </p>
+          <TweetsGrid />
         </div>
       </section>
 
